@@ -13,16 +13,13 @@ const DayPresentationPage = ({
   useEffect(() => {
     const handleGetDay = async () => {
       const day = (await params).day
-      console.log(day)
       const parsedDate = parseDateFromUrl(day.split("_").join("-"))
-      console.log(parsedDate)
       setReleaseDate(parsedDate)
     }
     handleGetDay()
   }, [params])
 
   const todaysPresentation = getTodaysPresentation(releaseDate, true)
-  console.log(todaysPresentation)
 
   return (
     <div className="flex h-dvh w-full flex-col gap-16 overflow-auto p-8 pl-20">

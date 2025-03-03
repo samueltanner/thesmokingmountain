@@ -16,14 +16,14 @@ export const getTodaysPresentation = (dateOverride?: string, allowFuture: boolea
   if (!allowFuture && date.isAfter(today, "day")) {
     targetDate = today
   }
-  console.log("targetDate", targetDate.format("MM-DD"))
+
 
 
   let todaysPresentation = presentationDays.find(
     (presentation) => presentation.release_date === targetDate.format("MM-DD")
   )
 
-  console.log({ todaysPresentation })
+
 
 
   if (!todaysPresentation) {
