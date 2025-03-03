@@ -16,12 +16,12 @@ const NavBar = () => {
   }
 
   return (
-    <div className="absolute top-4 left-4 z-50">
-      <button onClick={() => setIsOpen(!isOpen)}>
+    <div className="absolute top-2 left-2 z-50">
+      <button onClick={() => setIsOpen(!isOpen)} className="bg-black rounded-full p-2">
         {isOpen ? (
-          <X className="hover:text-tangerine fade-in-out z-[100] size-8 text-black" />
+          <X className="hover:text-tangerine fade-in-out z-[100] size-8 text-white" />
         ) : (
-          <List className="hover:text-tangerine fade-in-out size-8 text-white" />
+          <List className="hover:text-tangerine fade-in-out size-8 text-white drop-shadow-sm" />
         )}
       </button>
       <AnimatePresence>
