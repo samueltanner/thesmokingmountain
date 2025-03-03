@@ -5,6 +5,8 @@ import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { useRef } from "react"
 import MainPageTextAndImages from "@/views/MainPageTextAndImages"
+import dayjs from "dayjs"
+import presentationDays from "@/data/presentation_days.json"
 
 export default function Home() {
   const todaysPresentation = getTodaysPresentation()
@@ -39,23 +41,33 @@ export default function Home() {
         </p> */}
       </div>
       <MainPageTextAndImages />
-
-      {!!todaysPresentation && (
-        <button
-          onClick={() => {
-            const releaseDate = todaysPresentation?.release_date
-            router.push(`/slides/${releaseDate}`)
-          }}
-        >
-          <h3 className="font-header flex items-center justify-center gap-2 text-2xl text-white">
-            View Slides
-            <span className="font-bold">{todaysPresentation?.day_count},</span>
-            <span className="font-bold">{todaysPresentation?.date}</span>
-            <span className="font-bold">{todaysPresentation?.year}</span>
-            <span className="font-bold">{todaysPresentation?.weekday}</span>
-          </h3>
-        </button>
-      )}
+      <div className="flex size-full flex-col items-center justify-center gap-8 p-8">
+        {!!todaysPresentation ? (
+          <button
+            onClick={() => {
+              const releaseDate = todaysPresentation?.release_date
+              router.push(`/slides/${releaseDate}`)
+            }}
+          >
+            <h3 className="font-header flex items-center justify-center gap-2 text-2xl text-tangerine">
+              View Slides
+              <span className="font-bold">
+                {todaysPresentation?.day_count},
+              </span>
+              <span className="font-bold">{todaysPresentation?.date}</span>
+              <span className="font-bold">{todaysPresentation?.year}</span>
+              <span className="font-bold">{todaysPresentation?.weekday}</span>
+            </h3>
+          </button>
+        ) : (
+          <span className="flex size-full flex-grow items-center justify-center text-center text-2xl text-tangerine">
+            <p>
+              First presentation will release on{" "}
+              {dayjs(presentationDays[0].release_date).format("MM/DD")}
+            </p>
+          </span>
+        )}
+      </div>
     </div>
   )
 }
